@@ -1,3 +1,15 @@
-PODFILE CHECKSUM: eabbff4853f5d46aae3964c38511fb398505f1f8
+PODS:
+  - ARSLineProgress (1.2.0)
+  - SnapKit (0.15.0)
+
+DEPENDENCIES:
+  - ARSLineProgress (~> 1.0)
+  - SnapKit (~> 0.15.0)
+
+SPEC CHECKSUMS:
+  ARSLineProgress: c0e1947babec0719fbed2fced28e2bc5438cfc51
+  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
+
+PODFILE CHECKSUM: 6d164eac8e6bc6ecd09cc11529458ad95dd15e4d
 
 COCOAPODS: 1.0.0

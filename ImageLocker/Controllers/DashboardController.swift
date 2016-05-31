@@ -12,16 +12,59 @@ import DGElasticPullToRefresh
 import DKImagePickerController
 
 extension DashboardController{
+
+    typealias FolderNamehandler = (String) -> Void
     func didClickAddItem(sender: AnyObject) {
         let pickerController = DKImagePickerController()
         
-        pickerController.didSelectAssets = { (assets: [DKAsset]) in
-            print("didSelectAssets")
-            print(assets)
+        pickerController.didSelectAssets = {[unowned self]  (assets: [DKAsset]) in
+            if assets.count > 0 {
+                
+                self.showdialogForFolderName(){ folderName in
+                    let images = FileManager.sharedInstance.convertAssetsToImages(assets)
+                    print(images.count)
+                    print(folderName)
+                    
+                    let folder = Model.Folder(identifier: NSUUID().UUIDString, name: folderName, count:images.count , createdAt: NSDate(), modifiedAt: NSDate())
+                    self.folders?.append(folder)
+                    
+                }
+                
+                
+            }
             
         }
         
         self.presentViewController(pickerController, animated: true) {}
+    }
+    func showdialogForFolderName(completion: FolderNamehandler){
+        let alert = UIAlertController(title: "Give your folder a name", message: nil, preferredStyle: .Alert)
+        let done = UIAlertAction(title: "Done", style: .Default) { (action) in
+            
+            completion((alert.textFields?.first?.text)!)
+            
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+        alert.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Folder name"
+            textField.addTarget(self, action: #selector(self.didChangeinAlertTextField(_:)), forControlEvents: .EditingChanged)
+        }
+        done.enabled = false
+        alert.addAction(cancel)
+        alert.addAction(done)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    func didChangeinAlertTextField(sender: AnyObject){
+        if let alert:UIAlertController = self.presentedViewController as? UIAlertController{
+            alert.message = nil;
+            
+            let text1 = (alert.textFields?.first)! as UITextField
+            let done:UIAlertAction = alert.actions.last! as UIAlertAction
+            let isTyped:Bool = text1.text?.characters.count > 0
+            
+            done.enabled = isTyped
+
+        }
     }
 }
 
@@ -32,7 +75,8 @@ extension DashboardController: UITableViewDataSource{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
-        
+        let item = folders![indexPath.row] as Model.Folder
+        cell.textLabel?.text = item.name + "(\(item.count))"
         return cell
     }
 }

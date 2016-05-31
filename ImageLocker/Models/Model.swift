@@ -21,6 +21,7 @@ struct Model{
     struct Folder {
         let identifier: String
         let name: String
+        let count: Int
         let createdAt: NSDate?
         let modifiedAt: NSDate?
     }

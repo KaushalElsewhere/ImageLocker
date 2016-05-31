@@ -18,6 +18,7 @@
 		CDA3639B1CF85C350014D184 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDA363911CF85C350014D184 /* LaunchScreen.storyboard */; };
 		CDA3639E1CF85C350014D184 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA363971CF85C350014D184 /* Assets.xcassets */; };
 		CDA363A01CF85CFD0014D184 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDA3639F1CF85CFD0014D184 /* Info.plist */; };
+		CDC041BD1CFD8F7A005D8618 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC041BC1CFD8F7A005D8618 /* FileManager.swift */; };
 		CDD9A1401CF9C496004BFAB7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9A13F1CF9C496004BFAB7 /* Model.swift */; };
 		CDD9A1421CF9DD49004BFAB7 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9A1411CF9DD49004BFAB7 /* UIFont.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		CDA363921CF85C350014D184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDA363971CF85C350014D184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDA3639F1CF85CFD0014D184 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDC041BC1CFD8F7A005D8618 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		CDD9A13F1CF9C496004BFAB7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CDD9A1411CF9DD49004BFAB7 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		ED5BEEAB7C873E4EE574A85B /* Pods_ImageLocker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageLocker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,7 @@
 				CDA363961CF85C350014D184 /* Resources */,
 				CD1B25F51CF8609A005949B8 /* AppCoordinator.swift */,
 				CDA363901CF85C350014D184 /* AppDelegate.swift */,
+				CDC041BC1CFD8F7A005D8618 /* FileManager.swift */,
 			);
 			path = ImageLocker;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				CD1B25ED1CF85D83005949B8 /* UIViewController+UISetup.swift in Sources */,
 				CD1B25F81CF86FAA005949B8 /* K.swift in Sources */,
 				CD1B25F41CF85F47005949B8 /* DashboardController.swift in Sources */,
+				CDC041BD1CFD8F7A005D8618 /* FileManager.swift in Sources */,
 				CDA3639A1CF85C350014D184 /* AppDelegate.swift in Sources */,
 				CD1B25EF1CF85DDB005949B8 /* UIView+UISetup.swift in Sources */,
 				CDD9A1401CF9C496004BFAB7 /* Model.swift in Sources */,

@@ -6,7 +6,7 @@ target 'ImageLocker' do
 
 pod 'SnapKit', '~> 0.15.0'
 pod 'ARSLineProgress', '~> 1.0'
-
-
+pod 'DGElasticPullToRefresh'
+pod 'DKImagePickerController'
 
 end

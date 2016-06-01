@@ -8,8 +8,21 @@
 
 import UIKit
 
+extension AppCoordinator: DashboardControllerDelegate{
+    func dashboardController(vc: DashboardController, didSelectFolder folder: Model.Folder) {
+        folderDetailController = FolderDetailController()
+        folderDetailController.folder = folder
+        navigationController.pushViewController(folderDetailController, animated: true)
+    }
+}
+
 class AppCoordinator: NSObject {
     var window: UIWindow?
+    
+    var navigationController: UINavigationController!
+    var dashController: DashboardController!
+    var folderDetailController: FolderDetailController!
+    
     
     // Need to maintain a reference to these coordinators so they don't get deallocated
     //private var createItemCoordinator: CreateItemCoordinator!
@@ -38,11 +51,11 @@ class AppCoordinator: NSObject {
 //    }
     
     private func constructAuthenticatedRootViewController() -> UIViewController {
-        let dashController = DashboardController()
+        dashController = DashboardController()
+        dashController.delegate = self
+        navigationController = UINavigationController(rootViewController: dashController)
         
-        let dashNav = UINavigationController(rootViewController: dashController)
-        
-        return dashNav
+        return navigationController
 
     }
     

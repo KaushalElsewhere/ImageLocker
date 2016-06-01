@@ -22,6 +22,9 @@ struct Model{
         let identifier: String
         let name: String
         let count: Int
+        
+        let images: [UIImage]?
+        
         let createdAt: NSDate?
         let modifiedAt: NSDate?
     }

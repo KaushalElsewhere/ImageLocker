@@ -12,7 +12,7 @@ extension FolderDetailController{
     override func setupViews(){
         self.view.addSubview(collectionView)
         self.view.addSubview(deleteButton)
-        deleteButton.frame = CGRect(x: self.view.frame.size.width-100, y: self.view.frame.size.height-100, width: 50, height: 50)
+        deleteButton.frame = CGRect(x: self.view.frame.size.width-80, y: self.view.frame.size.height-100, width: 50, height: 50)
         
         
         
@@ -45,10 +45,13 @@ extension FolderDetailController{
             editButton.setTitle("Cancel", forState: .Normal)
             titleLabel.text = "Select"
             navigationItem.hidesBackButton = true
+            deleteButton.hidden = false
+            
         } else {
             editButton.setTitle("Edit", forState: .Normal)
             titleLabel.text = folder.name
             navigationItem.hidesBackButton = false
+            deleteButton.hidden = true
             
             let indexPaths:[NSIndexPath] = self.collectionView.indexPathsForSelectedItems()!
             for indexPath in indexPaths{
@@ -67,12 +70,7 @@ extension FolderDetailController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! FolderDetailCollectionCell
         cell.imgView.image = self.folder.images![indexPath.row]
-        if cell.selected == true {
-            cell.backgroundColor = .yellowColor()
-        }
-        else{
-            cell.backgroundColor = .whiteColor()
-        }
+        
         
         return cell
     }
@@ -138,21 +136,15 @@ class FolderDetailController: Controller{
     
     lazy var deleteButton:UIButton = {
         let button = UIButton(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        button.setImage(UIImage(named: "delete"), forState: .Normal)
-        button.backgroundColor = .whiteColor()
+        button.setImage(UIImage(named: "deleteW"), forState: .Normal)
+        button.backgroundColor = UIColor.cornflowerColor()
         button.layer.cornerRadius = 50/2
         button.layer.shadowColor = UIColor.blackColor().CGColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
         button.layer.masksToBounds = false
         button.layer.shadowRadius = 2
         button.layer.shadowOpacity = 1.0
-        //layer.masksToBounds = false
-        //layer.shadowColor = color.CGColor
-        //layer.shadowOffset = CGSize(width: 0, height: 5.0/2)
-        //layer.shadowRadius = 0
-        //layer.shadowOpacity = 1
-        
-        
+        button.hidden = true
         return button
     }()
     
@@ -162,7 +154,7 @@ class FolderDetailController: Controller{
     
     lazy var collectionView: UICollectionView = {
         let screenSize = UIScreen.mainScreen().bounds
-        let width = (screenSize.width/3)-3
+        let width = (screenSize.width/4)-4
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
         layout.itemSize = CGSize(width: width, height: width)
@@ -186,3 +178,4 @@ class FolderDetailController: Controller{
     }()
 
 }
+//

@@ -9,15 +9,36 @@
 import UIKit
 import DKImagePickerController
 
-class FileManager: NSObject{
+class FileManager{
+    private let defaults = NSUserDefaults.standardUserDefaults()
     static let sharedInstance = FileManager()
+    var hash = [String : [String:String]]()
     
-//    func createNewFolderWith(assets: [DKAsset]) -> Model.Folder{
-//        let id = NSUUID().UUIDString
-//        let name = "newFolder"
-//        let count = assets.count
-//        
-//    }
+    func createNewFolderWith(assets: [DKAsset], name:String ) -> Folder{
+        
+        let images = convertAssetsToImages(assets)
+        
+    
+        let folder = Folder()
+        let id = NSUUID().UUIDString
+        folder.identifier = id
+        folder.name = name
+        folder.count = images.count
+        
+        
+        let data : NSData = NSKeyedArchiver.archivedDataWithRootObject(folder)
+        let key = id
+        defaults.setObject(data, forKey: key)
+        
+        let dict = ["name" : name,
+                    "count": String(images.count)]
+        
+        
+        hash[key] = dict
+        defaults.setObject(hash, forKey: "hash")
+        
+        return folder
+    }
     
     func convertAssetsToImages(assets: [DKAsset]) -> [UIImage]{
         var images:[UIImage] = []
@@ -33,10 +54,8 @@ class FileManager: NSObject{
         
         return images
     }
+
     
-    func saveToUserDefault(data:NSData, withKey key:String){
-        
-    }
     
     
 }

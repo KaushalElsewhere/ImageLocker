@@ -45,7 +45,7 @@ class FolderDetailCollectionCell: CollectionCell {
     lazy var coverView:UIView = {
        let view = UIView()
         view.backgroundColor = .whiteColor()
-        view.alpha = 0.4
+        view.alpha = 0.6
         view.hidden = true
         
         return view

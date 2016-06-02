@@ -14,6 +14,8 @@
 		CD1B25F41CF85F47005949B8 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B25F31CF85F47005949B8 /* DashboardController.swift */; };
 		CD1B25F61CF8609A005949B8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B25F51CF8609A005949B8 /* AppCoordinator.swift */; };
 		CD1B25F81CF86FAA005949B8 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B25F71CF86FAA005949B8 /* K.swift */; };
+		CD26B7441D00520C00A4A6DC /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26B7431D00520C00A4A6DC /* Folder.swift */; };
+		CD8ABD151D003F6C00E4442A /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8ABD141D003F6C00E4442A /* Colours.swift */; };
 		CDA3639A1CF85C350014D184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA363901CF85C350014D184 /* AppDelegate.swift */; };
 		CDA3639B1CF85C350014D184 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDA363911CF85C350014D184 /* LaunchScreen.storyboard */; };
 		CDA3639E1CF85C350014D184 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA363971CF85C350014D184 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		CD1B25F31CF85F47005949B8 /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		CD1B25F51CF8609A005949B8 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CD1B25F71CF86FAA005949B8 /* K.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		CD26B7431D00520C00A4A6DC /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		CD8ABD141D003F6C00E4442A /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		CD9685D81CF8532900A42ADF /* ImageLocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA363901CF85C350014D184 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Others/AppDelegate.swift; sourceTree = "<group>"; };
 		CDA363921CF85C350014D184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD9A13F1CF9C496004BFAB7 /* Model.swift */,
+				CD26B7431D00520C00A4A6DC /* Folder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 		CDA363961CF85C350014D184 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CD8ABD141D003F6C00E4442A /* Colours.swift */,
 				CDA363971CF85C350014D184 /* Assets.xcassets */,
 				CD1B25F71CF86FAA005949B8 /* K.swift */,
 			);
@@ -306,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1B25F61CF8609A005949B8 /* AppCoordinator.swift in Sources */,
+				CD8ABD151D003F6C00E4442A /* Colours.swift in Sources */,
 				CD1B25F21CF85E5B005949B8 /* Controller.swift in Sources */,
 				CDC1827F1CFF002800E4DA63 /* CollectionCell.swift in Sources */,
 				CD1B25ED1CF85D83005949B8 /* UIViewController+UISetup.swift in Sources */,
@@ -315,6 +322,7 @@
 				CDC041BD1CFD8F7A005D8618 /* FileManager.swift in Sources */,
 				CDA3639A1CF85C350014D184 /* AppDelegate.swift in Sources */,
 				CDC1827D1CFEFF9500E4DA63 /* FolderDetailCollectionCell.swift in Sources */,
+				CD26B7441D00520C00A4A6DC /* Folder.swift in Sources */,
 				CD1B25EF1CF85DDB005949B8 /* UIView+UISetup.swift in Sources */,
 				CDD9A1401CF9C496004BFAB7 /* Model.swift in Sources */,
 				CDD9A1421CF9DD49004BFAB7 /* UIFont.swift in Sources */,

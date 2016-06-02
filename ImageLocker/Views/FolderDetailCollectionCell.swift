@@ -9,11 +9,11 @@
 import UIKit
 extension FolderDetailCollectionCell{
     override func setupViews() {
+        coverView.addSubview(checkmark)
+        imgView.addSubview(coverView)
         contentView.addSubview(imgView)
+    
         backgroundColor = .whiteColor()
-        //self.layer.borderColor = UIColor.blackColor().CGColor
-        //self.layer.cornerRadius = 5.0
-        //self.layer.borderWidth = 1.0
         
         setupConstraints()
     }
@@ -23,12 +23,37 @@ extension FolderDetailCollectionCell{
         imgView.snp_makeConstraints { (make) in
             make.edges.equalTo(superView).inset(5)
         }
+        
+        coverView.snp_makeConstraints { (make) in
+            make.edges.equalTo(imgView)
+        }
+        checkmark.snp_makeConstraints { (make) in
+            make.width.height.equalTo(32)
+            make.centerX.equalTo(coverView.snp_centerX)
+            make.centerY.equalTo(coverView.snp_centerY)
+        }
+        
     }
 }
 class FolderDetailCollectionCell: CollectionCell {
     lazy var imgView: UIImageView = {
         let imageView = UIImageView()
         
+        return imageView
+    }()
+    
+    lazy var coverView:UIView = {
+       let view = UIView()
+        view.backgroundColor = .whiteColor()
+        view.alpha = 0.4
+        view.hidden = true
+        
+        return view
+    }()
+    
+    lazy var checkmark:UIImageView = {
+        let imageView = UIImageView(frame:.zero)
+        imageView.image = UIImage(named: "check")!
         return imageView
     }()
 }

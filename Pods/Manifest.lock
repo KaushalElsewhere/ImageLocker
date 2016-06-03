@@ -6,6 +6,7 @@ PODS:
     - DKImagePickerController/ImageManager (= 3.2.1)
   - DKImagePickerController/Camera (3.2.1)
   - DKImagePickerController/ImageManager (3.2.1)
+  - ImageViewer (2.0)
   - JTSImageViewController (1.5.1)
   - SnapKit (0.15.0)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - ARSLineProgress (~> 1.0)
   - DGElasticPullToRefresh
   - DKImagePickerController (~> 3.2.1)
+  - ImageViewer
   - JTSImageViewController (~> 1.5.1)
   - SnapKit (~> 0.15.0)
 
@@ -20,9 +22,10 @@ SPEC CHECKSUMS:
   ARSLineProgress: c0e1947babec0719fbed2fced28e2bc5438cfc51
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
+  ImageViewer: 00eae024d0cb2eebb4b228f4669b6c4872afadb9
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
 
-PODFILE CHECKSUM: 1033716982ce40441e864bf78cfaa9b29024c351
+PODFILE CHECKSUM: 67034ad4ef52087f9579c3a94cb6af3988c763cb
 
 COCOAPODS: 1.0.0

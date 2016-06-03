@@ -12,7 +12,7 @@ import DGElasticPullToRefresh
 import DKImagePickerController
 
 protocol DashboardControllerDelegate: class{
-    func dashboardController(vc:DashboardController, didSelectFolder folder: Model.Folder) -> Void
+    func dashboardController(vc:DashboardController, didSelectFolder folder: String) -> Void
 }
 extension DashboardController{
 
@@ -24,6 +24,15 @@ extension DashboardController{
             if assets.count > 0 {
                 
                 self.showdialogForFolderName(){ folderName in
+                    
+                    let newFolder = FileManager.sharedInstance.createNewFolderWith(assets, name: folderName)
+                    
+                    let hashes  = FileManager.sharedInstance.hash
+                    self.folders = Array(hashes.keys)
+                    
+                    
+                    
+                    /*
                     let images = FileManager.sharedInstance.convertAssetsToImages(assets)
                     print(images.count)
                     print(folderName)
@@ -31,14 +40,14 @@ extension DashboardController{
                     let folder = Model.Folder(
                         identifier: NSUUID().UUIDString,
                         name: folderName,
-                        count:images.count,
+                        count: images.count,
                         images: images,
                         createdAt: NSDate(),
                         modifiedAt: NSDate()
                     )
                     
                     self.folders.append(folder)
-                    
+                    */
                     self.tableView.reloadData()
                 }
             }
@@ -85,8 +94,10 @@ extension DashboardController: UITableViewDataSource{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
-        let item = folders[indexPath.row] as Model.Folder
-        cell.textLabel?.text = item.name + " (\(item.count))"
+        
+        let dict = FileManager.sharedInstance.hash[folders[indexPath.row]]!
+        
+        cell.textLabel?.text = dict["name"]! + " (\(dict["count"]!))"
         return cell
     }
 }
@@ -101,6 +112,7 @@ extension DashboardController:UITableViewDelegate{
 
 extension DashboardController{
     override func setupViews() {
+        readHashfromFileManager()
         view.addSubview(tableView)
         
         view.backgroundColor = K.Color.lightGray
@@ -131,11 +143,15 @@ extension DashboardController{
         navigationItem.rightBarButtonItem = bbitem
     }
     
+    func readHashfromFileManager(){
+        self.folders = Array(FileManager.sharedInstance.hash.keys)
+    }
+    
 }
 class DashboardController: Controller {
     weak var delegate:DashboardControllerDelegate?
     
-    var folders:[Model.Folder] = []
+    var folders = [String]()
     
     lazy var tableView:UITableView = {
         let tableView = UITableView()

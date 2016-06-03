@@ -20,8 +20,13 @@ extension FolderDetailCollectionCell{
     override func setupConstraints() {
         let superView = contentView
         
+        contentView.snp_makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+        
         imgView.snp_makeConstraints { (make) in
-            make.edges.equalTo(superView).inset(5)
+            make.left.top.equalTo(superView).offset(5)
+            make.right.bottom.equalTo(superView).inset(5)
         }
         
         coverView.snp_makeConstraints { (make) in
@@ -38,7 +43,8 @@ extension FolderDetailCollectionCell{
 class FolderDetailCollectionCell: CollectionCell {
     lazy var imgView: UIImageView = {
         let imageView = UIImageView()
-        
+        imageView.contentMode = .ScaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     

@@ -14,17 +14,20 @@ class FileManager{
     static let sharedInstance = FileManager()
     var hash = [String : [String:String]]()
     
+    typealias Dict = [String : [String:String]]
+    
+    init(){
+        if let temphash = defaults.objectForKey("hash") as? Dict{
+            self.hash = temphash
+        }
+    }
+    
     func createNewFolderWith(assets: [DKAsset], name:String ) -> Folder{
         
         let images = convertAssetsToImages(assets)
         
-    
-        let folder = Folder()
-        let id = NSUUID().UUIDString
-        folder.identifier = id
-        folder.name = name
-        folder.count = images.count
-        
+        let folder = Folder(name: name, images: images)
+        let id = folder.identifier
         
         let data : NSData = NSKeyedArchiver.archivedDataWithRootObject(folder)
         let key = id
@@ -55,6 +58,14 @@ class FileManager{
         return images
     }
 
+    func readFolderFromDefaultForKey(key: String) -> Folder {
+        let data =  defaults.objectForKey(key)! as! NSData
+        let folder = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Folder
+        return folder
+    }
+    
+    
+    
     
     
     

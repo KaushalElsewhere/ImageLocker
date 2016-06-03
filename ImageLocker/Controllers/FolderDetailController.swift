@@ -8,8 +8,13 @@
 
 import UIKit
 import JTSImageViewController
+import ImageViewer
+
 extension FolderDetailController{
     override func setupViews(){
+        
+        readAllFolderImagesFromDefault()
+        
         self.view.addSubview(collectionView)
         self.view.addSubview(deleteButton)
         deleteButton.frame = CGRect(x: self.view.frame.size.width-80, y: self.view.frame.size.height-100, width: 50, height: 50)
@@ -41,6 +46,14 @@ extension FolderDetailController{
     }
     func didClickOnEditBbi(sender:AnyObject){
         isEditMode = !isEditMode
+        
+        let indexPaths:[NSIndexPath] = self.collectionView.indexPathsForSelectedItems()!
+        for indexPath in indexPaths{
+            self.collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! FolderDetailCollectionCell
+            cell.coverView.hidden = true
+        }
+        
         if isEditMode == true {
             editButton.setTitle("Cancel", forState: .Normal)
             titleLabel.text = "Select"
@@ -53,23 +66,24 @@ extension FolderDetailController{
             navigationItem.hidesBackButton = false
             deleteButton.hidden = true
             
-            let indexPaths:[NSIndexPath] = self.collectionView.indexPathsForSelectedItems()!
-            for indexPath in indexPaths{
-                self.collectionView.deselectItemAtIndexPath(indexPath, animated: false)
-                let cell = collectionView.cellForItemAtIndexPath(indexPath) as! FolderDetailCollectionCell
-                cell.coverView.hidden = true
-            }
+            
+        }
+    }
+    func readAllFolderImagesFromDefault(){
+        if let folder = FileManager.sharedInstance.readFolderFromDefaultForKey(self.folderIdentifier) as? Folder {
+            self.folder = folder
+            collectionView.collectionViewLayout =  createLayoutwithCellCount(self.folder.images.count ?? 0)
         }
     }
 
 }
 extension FolderDetailController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.folder.images?.count)!
+        return (self.folder.images.count)
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! FolderDetailCollectionCell
-        cell.imgView.image = self.folder.images![indexPath.row]
+        cell.imgView.image = self.folder.images[indexPath.row]
         
         
         return cell
@@ -92,7 +106,10 @@ extension FolderDetailController:UICollectionViewDelegate{
         if isEditMode == true {
             cell.coverView.hidden = false
         } else{
-            showImageOnViewer(cell.imgView)
+            cell.selected = true
+            //showImageOnViewer(cell.imgView)
+            
+            showGalleryImageViewer(cell.contentView,selectedIndex: indexPath.row)
         }
         
         //showImageOnViewer(cell.imgView)
@@ -103,6 +120,7 @@ extension FolderDetailController:UICollectionViewDelegate{
             cell.coverView.hidden = true
         } else{
             //showImageOnViewer(cell.imgView)
+            showGalleryImageViewer(cell.contentView,selectedIndex: indexPath.row)
         }
     }
     
@@ -116,8 +134,54 @@ extension FolderDetailController:UICollectionViewDelegate{
         let imageViewer = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
         imageViewer.showFromViewController(self, transition: .FromOriginalPosition)
     }
-}
+    
+    
 
+    
+}
+extension FolderDetailController{
+    func showGalleryImageViewer(displacedView: UIView, selectedIndex index:Int) {
+        
+        let imageProvider = SomeImageProvider()
+        imageProvider.images = self.folder.images
+        
+//        let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
+//        let headerView = CounterView(frame: frame, currentIndex: displacedView.tag, count: self.folder.images.count)
+//        let footerView = CounterView(frame: frame, currentIndex: displacedView.tag, count: images.count)
+        
+        let galleryViewController = GalleryViewController(imageProvider: imageProvider,
+                                                          displacedView: displacedView,
+                                                          imageCount: folder.images.count,
+                                                          startIndex: index)
+//        galleryViewController.headerView = headerView
+//        galleryViewController.footerView = footerView
+        
+//        galleryViewController.launchedCompletion = { print("LAUNCHED") }
+//        galleryViewController.closedCompletion = { print("CLOSED") }
+//        galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
+        
+//        galleryViewController.landedPageAtIndexCompletion = { index in
+//            
+//            print("LANDED AT INDEX: \(index)")
+//            
+////            headerView.currentIndex = index
+////            footerView.currentIndex = index
+//        }
+        
+        self.presentImageGallery(galleryViewController)
+    }
+    
+}
+class SomeImageProvider: ImageProvider {
+    var images: [UIImage]!
+    func provideImage(completion: UIImage? -> Void) {
+        completion(images.first)
+    }
+    
+    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
+        completion(images[index])
+    }
+}
 class FolderDetailController: Controller{
     lazy var titleLabel:UILabel  = {
         let label = UILabel(frame:CGRect(x: 0, y: 0, width: 100, height: 20))
@@ -150,25 +214,23 @@ class FolderDetailController: Controller{
     
     var isEditMode:Bool = false
     
-    var folder:Model.Folder!
+    var folder:Folder!
+    var folderIdentifier:String!
+    
+    var layout:UICollectionViewFlowLayout{
+        return self.createLayoutwithCellCount(3)
+    }
     
     lazy var collectionView: UICollectionView = {
-        let screenSize = UIScreen.mainScreen().bounds
-        let width = (screenSize.width/4)-4
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
-        layout.itemSize = CGSize(width: width, height: width)
-        layout.minimumInteritemSpacing = 1
-        layout.minimumLineSpacing = 1
         
-        
+    
         //let width = CGFloat(self.view.frame.size.width)/4-15
         
         //let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         //layout.sectionInset = UIEdgeInsets(top: 20, left: 8, bottom: 10, right: 8)
         //layout.itemSize = CGSize(width: width, height: width)
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.registerClass(FolderDetailCollectionCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
@@ -176,6 +238,31 @@ class FolderDetailController: Controller{
         collectionView.allowsMultipleSelection = true
         return collectionView
     }()
-
+    
+    func createLayoutwithCellCount(count:Int) -> UICollectionViewFlowLayout {
+        
+        var number:Int
+        
+        switch count {
+        case 1...5:
+            number = 2
+        case 6...11:
+            number = 3
+        case 12...100000000000:
+            number = 4
+        default:
+            fatalError("image count is beyond limit, please check and correct")
+        }
+        
+        
+        let screenSize = UIScreen.mainScreen().bounds
+        let width = (screenSize.width/CGFloat(number)) - CGFloat(number+2)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
+        layout.itemSize = CGSize(width: width, height: width)
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 3
+        return layout
+    }
 }
 //

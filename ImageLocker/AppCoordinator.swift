@@ -9,9 +9,9 @@
 import UIKit
 
 extension AppCoordinator: DashboardControllerDelegate{
-    func dashboardController(vc: DashboardController, didSelectFolder folder: Model.Folder) {
+    func dashboardController(vc: DashboardController, didSelectFolder identifier: String) {
         folderDetailController = FolderDetailController()
-        folderDetailController.folder = folder
+        folderDetailController.folderIdentifier = identifier
         navigationController.pushViewController(folderDetailController, animated: true)
     }
 }

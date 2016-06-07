@@ -1,5 +1,5 @@
 # Image Locker App
-An open source iOS app to save photos and lock it with password.
+An open source iOS app built in Swift to save photos and lock it with password.
 
 ---------------------------------------------
 
@@ -14,6 +14,14 @@ An open source iOS app to save photos and lock it with password.
 - [ ] Functionality: Deleting Folder
 - [ ] Implement Progress bar for large number of images.
 
+## DEPENDENCIES
+  - ARSLineProgress (~> 1.0)
+  - DGElasticPullToRefresh
+  - DKImagePickerController (~> 3.2.1)
+  - ImageViewer
+  - JTSImageViewController (~> 1.5.1)
+  - SnapKit (~> 0.15.0)
+  
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.
 

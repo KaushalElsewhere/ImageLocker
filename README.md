@@ -1,4 +1,4 @@
-# Image Locker App
+# Image Locker App (**Under Development**)
 An open source iOS app built in Swift to save photos and lock it with password.
 
 ---------------------------------------------

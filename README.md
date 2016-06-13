@@ -13,6 +13,7 @@ An open source iOS app built in Swift to save photos and lock it with password.
 - [ ] Functionality: Rename Folder
 - [ ] Functionality: Deleting Folder
 - [ ] Implement Progress bar for large number of images.
+- [ ] move from NSUserDefault to Cordata/Realm
 
 ## DEPENDENCIES
   - ARSLineProgress (~> 1.0)

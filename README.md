@@ -17,7 +17,7 @@ An open source iOS app built in Swift to save photos and lock it with password.
 
 ## DEPENDENCIES
   - ARSLineProgress (~> 1.0)
-  - DGElasticPullToRefresh
+  - ~~DGElasticPullToRefresh~~
   - DKImagePickerController (~> 3.2.1)
   - ImageViewer
   - JTSImageViewController (~> 1.5.1)

@@ -196,12 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD9685EA1CF8532900A42ADF /* Build configuration list for PBXNativeTarget "ImageLocker" */;
 			buildPhases = (
-				4B0955A396ED540220534BFB /* 📦 Check Pods Manifest.lock */,
+				4B0955A396ED540220534BFB /* [CP] Check Pods Manifest.lock */,
 				CD9685D41CF8532900A42ADF /* Sources */,
 				CD9685D51CF8532900A42ADF /* Frameworks */,
 				CD9685D61CF8532900A42ADF /* Resources */,
-				8DDE4336D92F5DBE0C7C41E5 /* 📦 Embed Pods Frameworks */,
-				B496864BB5037D71CDFB6C72 /* 📦 Copy Pods Resources */,
+				8DDE4336D92F5DBE0C7C41E5 /* [CP] Embed Pods Frameworks */,
+				B496864BB5037D71CDFB6C72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,14 +259,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4B0955A396ED540220534BFB /* 📦 Check Pods Manifest.lock */ = {
+		4B0955A396ED540220534BFB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,14 +274,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8DDE4336D92F5DBE0C7C41E5 /* 📦 Embed Pods Frameworks */ = {
+		8DDE4336D92F5DBE0C7C41E5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,14 +289,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImageLocker/Pods-ImageLocker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B496864BB5037D71CDFB6C72 /* 📦 Copy Pods Resources */ = {
+		B496864BB5037D71CDFB6C72 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

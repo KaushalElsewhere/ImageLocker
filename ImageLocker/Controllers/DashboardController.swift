@@ -146,7 +146,6 @@ extension DashboardController{
     func readHashfromFileManager(){
         self.folders = Array(FileManager.sharedInstance.hash.keys)
     }
-    
 }
 class DashboardController: Controller {
     weak var delegate:DashboardControllerDelegate?

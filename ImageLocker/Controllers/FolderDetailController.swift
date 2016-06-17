@@ -10,41 +10,10 @@ import UIKit
 import JTSImageViewController
 import ImageViewer
 
+
+//MARK: Methods
 extension FolderDetailController{
-    override func setupViews(){
-        
-        readAllFolderImagesFromDefault()
-        
-        self.view.addSubview(collectionView)
-        self.view.addSubview(deleteButton)
-        deleteButton.frame = CGRect(x: self.view.frame.size.width-80, y: self.view.frame.size.height-100, width: 50, height: 50)
-        
-        
-        
-        self.view.backgroundColor = K.Color.lightGray
-    
-        setupNav()
-        setupConstraints()
-    }
-    override func setupConstraints() {
-        let superView = view
-        
-        collectionView.snp_makeConstraints { (make) in
-            make.left.top.right.bottom.equalTo(superView)
-        }
-        
-        
-    }
-    func setupNav(){
-        
-        titleLabel.text = folder.name
-        navigationItem.titleView = titleLabel
-        
-        editButton.addTarget(self, action: #selector(didClickOnEditBbi(_:)), forControlEvents: .TouchUpInside)
-        let editBbi = UIBarButtonItem(customView: editButton)
-        navigationItem.rightBarButtonItem = editBbi
-    }
-    func didClickOnEditBbi(sender:AnyObject){
+    func didClickOnEditBbi(sender: AnyObject){
         isEditMode = !isEditMode
         
         let indexPaths:[NSIndexPath] = self.collectionView.indexPathsForSelectedItems()!
@@ -69,12 +38,75 @@ extension FolderDetailController{
             
         }
     }
+    
     func readAllFolderImagesFromDefault(){
         if let folder = FileManager.sharedInstance.readFolderFromDefaultForKey(self.folderIdentifier) as? Folder {
             self.folder = folder
             collectionView.collectionViewLayout =  createLayoutwithCellCount(self.folder.images.count ?? 0)
         }
     }
+    
+    func didSelectDeleteBtn(sender: AnyObject){
+        
+//        let defaultStyle = UIAlertController
+//        
+//        MZAlertControllerStyle *defaultStyle = [UIAlertController mz_sharedStyle];
+//        defaultStyle.blurEffectStyle = UIBlurEffectStyleDark;
+//        defaultStyle.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+        
+        
+        let alert = UIAlertController(title: "Lorem Ipsum", message: "Haqoona matata, yaaro, ghum ko maaro goli.", preferredStyle: .Alert)
+        
+        let done = UIAlertAction(title: "Done", style: .Default) { (action) in
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+        
+        alert.addAction(cancel)
+        alert.addAction(done)
+        
+        
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+extension FolderDetailController{
+    override func setupViews(){
+        
+        readAllFolderImagesFromDefault()
+        
+        self.view.addSubview(collectionView)
+        self.view.addSubview(deleteButton)
+        deleteButton.frame = CGRect(x: self.view.frame.size.width-80, y: self.view.frame.size.height-100, width: 50, height: 50)
+        
+        deleteButton.addTarget(self, action: #selector(didSelectDeleteBtn(_:)), forControlEvents: .TouchUpInside)
+        
+        self.view.backgroundColor = K.Color.lightGray
+    
+        setupNav()
+        setupConstraints()
+    }
+    override func setupConstraints() {
+        let superView = view
+        
+        collectionView.snp_makeConstraints { (make) in
+            make.left.top.right.bottom.equalTo(superView)
+        }
+        
+        
+    }
+    func setupNav(){
+        
+        titleLabel.text = folder.name
+        navigationItem.titleView = titleLabel
+        
+        editButton.addTarget(self, action: #selector(didClickOnEditBbi(_:)), forControlEvents: .TouchUpInside)
+        let editBbi = UIBarButtonItem(customView: editButton)
+        navigationItem.rightBarButtonItem = editBbi
+    }
+    
 
 }
 extension FolderDetailController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{

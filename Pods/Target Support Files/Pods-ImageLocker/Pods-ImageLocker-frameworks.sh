@@ -90,6 +90,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ImageViewer/ImageViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTSImageViewController/JTSImageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertController-MZStyle/UIAlertController_MZStyle.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ARSLineProgress/ARSLineProgress.framework"
@@ -98,4 +99,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ImageViewer/ImageViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTSImageViewController/JTSImageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIAlertController-MZStyle/UIAlertController_MZStyle.framework"
 fi

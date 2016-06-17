@@ -9,6 +9,7 @@ PODS:
   - ImageViewer (2.0)
   - JTSImageViewController (1.5.1)
   - SnapKit (0.15.0)
+  - UIAlertController-MZStyle (1.0.0)
 
 DEPENDENCIES:
   - ARSLineProgress (~> 1.0)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - ImageViewer
   - JTSImageViewController (~> 1.5.1)
   - SnapKit (~> 0.15.0)
+  - UIAlertController-MZStyle
 
 SPEC CHECKSUMS:
   ARSLineProgress: c0e1947babec0719fbed2fced28e2bc5438cfc51
@@ -25,7 +27,8 @@ SPEC CHECKSUMS:
   ImageViewer: 00eae024d0cb2eebb4b228f4669b6c4872afadb9
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
+  UIAlertController-MZStyle: 2659de771525f994c99b8c3be506304a4b080b03
 
-PODFILE CHECKSUM: 67034ad4ef52087f9579c3a94cb6af3988c763cb
+PODFILE CHECKSUM: 37542430360f89e64ac5794cbe18dd7a73e22bc5
 
 COCOAPODS: 1.0.1

@@ -13,11 +13,14 @@ public extension UIFont {
     }
     
     func size(size: CGFloat) -> UIFont {
-        
         return self.fontWithSize(size)
     }
     
     public static func fontWithName(name:String)(size: CGFloat) -> UIFont {
         return UIFont(name: name, size: size)!
+    }
+    
+    func fancyFont(size: CGFloat) {
+        return UIFont(name: "AmericanTypewriter", size:size)!
     }
 }
